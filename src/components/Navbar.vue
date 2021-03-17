@@ -4,8 +4,8 @@
     <router-link to="/">Home</router-link> |
     <router-link to="/dashboard">Dashboard</router-link> |
     <router-link to="/addproduct">Add Product</router-link> |
-    <router-link to="/about">Banner</router-link> |
-    <router-link to="/about">Add Banner</router-link>
+    <router-link to="/banner">Banner</router-link> |
+    <router-link to="/addbanner">Add Banner</router-link>
   </div>
 </template>
 

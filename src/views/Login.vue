@@ -4,14 +4,14 @@
             <div class="content">
                 <h3>Login Ecommerce CMS</h3>
                 <hr />
-                <form>
+                <form @submit.prevent='login'>
                     <div class="form-group">
                         <label for="email" class="label">Email address</label>
-                        <input type="email" class="form-control" id="email" placeholder="Email">
+                        <input v-model="email" type="email" class="form-control" id="email" placeholder="Email">
                     </div>
                     <div class="form-group">
                         <label for="password" class="label">Password</label>
-                        <input type="password" class="form-control" id="password" placeholder="Password">
+                        <input v-model="password" type="password" class="form-control" id="password" placeholder="Password">
                     </div><br>
                     <button type="submit" class="btn btn-primary label" id="btn-login">Login</button>
                     <hr />
@@ -35,6 +35,21 @@
 <script>
 // import axios from '../axios/axios'
 export default {
+  data () {
+    return {
+      email: '',
+      password: ''
+    }
+  },
+  methods: {
+    login () {
+      const data = {
+        email: this.email,
+        password: this.password
+      }
+      this.$store.dispatch('login', data)
+    }
+  }
 }
 </script>
 

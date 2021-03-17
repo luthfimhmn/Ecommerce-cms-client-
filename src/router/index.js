@@ -3,6 +3,8 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import AddProduct from '../views/AddProduct.vue'
+import Banner from '../views/Banner.vue'
+import AddBanner from '../views/AddBanner.vue'
 
 Vue.use(VueRouter)
 
@@ -13,9 +15,19 @@ const routes = [
     component: Home
   },
   {
+    path: '/addbanner',
+    name: 'AddBanner',
+    component: AddBanner
+  },
+  {
     path: '/login',
     name: 'Login',
     component: Login
+  },
+  {
+    path: '/banner',
+    name: 'Banner',
+    component: Banner
   },
   {
     path: '/addproduct',
