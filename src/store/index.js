@@ -7,7 +7,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    product: []
+    product: [],
+    editedProduct: ''
   },
   mutations: {
     insertProduct (state, payload) {
@@ -18,6 +19,9 @@ export default new Vuex.Store({
     },
     deleteProduct (state, payload) {
       state.product.filter(product => product.id !== payload)
+    },
+    getEditProduct (state, payload) {
+      state.editedProduct = payload
     }
   },
   actions: {
@@ -84,6 +88,35 @@ export default new Vuex.Store({
         .catch(err => {
           console.log(err)
         })
+    },
+    editProduct (context, payload) {
+      axios({
+        method: 'PUT',
+        url: `http://localhost:3000/products/${payload.prodId}`,
+        headers: { access_token: localStorage.access_token },
+        data: {
+          name: payload.name,
+          image_url: payload.image_url,
+          price: payload.price,
+          stock: payload.stock
+        }
+      })
+        .then(({ data }) => {
+          router.push('/dashboard')
+        })
+        .catch(err => console.log(err))
+    },
+    getEditProduct (context, id) {
+      axios({
+        method: 'GET',
+        url: `http://localhost:3000/products/${id}`,
+        headers: { access_token: localStorage.access_token }
+      })
+        .then(data => {
+          context.commit('getEditProduct', data)
+          router.push(`/dashboard/${id}/edit`)
+        })
+        .catch(err => console.log(err))
     }
   },
   modules: {

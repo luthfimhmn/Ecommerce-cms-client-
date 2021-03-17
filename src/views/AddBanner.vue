@@ -1,5 +1,5 @@
 <template>
-<div class="back">
+<div class="container">
         <div class="div-center">
             <div class="content">
                 <h3>Add Banner</h3>

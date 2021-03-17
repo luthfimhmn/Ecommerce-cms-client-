@@ -1,10 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-import Login from '../views/Login.vue'
-import AddProduct from '../views/AddProduct.vue'
-import Banner from '../views/Banner.vue'
-import AddBanner from '../views/AddBanner.vue'
 
 Vue.use(VueRouter)
 
@@ -12,35 +7,42 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: () => import('../views/Home.vue')
   },
   {
     path: '/addbanner',
     name: 'AddBanner',
-    component: AddBanner
+    component: () => import('../views/AddBanner.vue')
   },
   {
     path: '/login',
     name: 'Login',
-    component: Login
+    component: () => import('../views/Login.vue')
   },
   {
     path: '/banner',
     name: 'Banner',
-    component: Banner
+    component: () => import('../views/Banner.vue')
   },
   {
     path: '/addproduct',
     name: 'AddProduct',
-    component: AddProduct
+    component: () => import('../views/AddProduct.vue')
   },
   {
     path: '/dashboard',
     name: 'Dashboard',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Dashboard.vue')
+    component: () => import('../views/Dashboard.vue')
+  },
+  {
+    path: '/dashboard/:id/edit',
+    name: 'Edit',
+    component: () => import('../views/EditProduct.vue')
+  },
+  {
+    path: '*',
+    name: 'NotFound',
+    component: () => import('../views/NotFound.vue')
   }
 ]
 
@@ -48,6 +50,18 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  if (!localStorage.access_token) {
+    if (to.name === 'Dashboard' || to.name === 'Home' || to.name === 'AddProduct' || to.name === 'Banner' || to.name === 'AddBanner' || to.name === 'Edit') {
+      next({ name: 'Login' })
+    } else {
+      next()
+    }
+  } else {
+    next()
+  }
 })
 
 export default router

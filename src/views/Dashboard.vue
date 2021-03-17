@@ -1,6 +1,6 @@
 <template>
   <div class="about container">
-    <h1>This is dashboard page</h1><br>
+    <h1>Dashboard</h1><br>
     <table class="table">
       <thead>
         <tr>
@@ -22,7 +22,7 @@
             <td>{{ prod.price }}</td>
             <td>{{ prod.stock }} </td>
             <td>
-              <button class="btn btn-danger" @click="goToEdit">Edit</button> &nbsp; &nbsp;
+              <button class="btn btn-danger" @click="goToEdit(prod.id)">Edit</button> &nbsp; &nbsp;
               <button class="btn btn-danger" @click="deleteProduct(prod.id)">Delete</button>
             </td>
           </tr>
@@ -38,8 +38,8 @@ export default {
     fetchProduct () {
       this.$store.dispatch('fetchProduct')
     },
-    goToEdit () {
-      this.$router.push('/edit')
+    goToEdit (id) {
+      this.$store.dispatch('getEditProduct', id)
     },
     deleteProduct (id) {
       this.$store.dispatch('deleteProduct', id)

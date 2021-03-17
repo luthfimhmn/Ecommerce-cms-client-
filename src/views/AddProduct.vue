@@ -1,8 +1,8 @@
 <template>
-    <div class="back">
+    <div class="container">
         <div class="div-center">
             <div class="content">
-                <h3>Add Product</h3>
+                <h3>Add Product</h3><br>
                 <form @submit.prevent="addProduct">
                     <div class="form-group">
                         <label for="title">Product Name :</label>

@@ -1,12 +1,12 @@
 <template>
 <div>
-    <table class="table">
+    <table class="table container">
         <thead>
-            <td>No</td>
-            <td>Banner</td>
-            <td>Category</td>
-            <td>Status</td>
-            <td>Actions</td>
+            <th>No</th>
+            <th>Banner</th>
+            <th>Category</th>
+            <th>Status</th>
+            <th>Actions</th>
         </thead>
         <tbody>
         </tbody>

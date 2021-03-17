@@ -12,19 +12,9 @@
                     <div class="form-group">
                         <label for="password" class="label">Password</label>
                         <input v-model="password" type="password" class="form-control" id="password" placeholder="Password">
-                    </div><br>
+                    </div>
                     <button type="submit" class="btn btn-primary label" id="btn-login">Login</button>
                     <hr />
-                </form>
-                <h4>Or Sign In with Google</h4>
-                <hr />
-                <form>
-                    <div>
-                        <div class="form-group">
-                            <div id="gSignIn" class="g-signin2" data-onsuccess="onSignIn"></div>
-                            <button id="gSignOut" onclick="signOut()" hidden>Log Out</button>
-                        </div>
-                    </div>
                 </form>
                 <p>Not having account yet? <a href="" id="link-register">Register Now</a></p>
             </div>
