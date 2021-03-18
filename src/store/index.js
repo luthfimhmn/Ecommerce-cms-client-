@@ -18,7 +18,7 @@ export default new Vuex.Store({
       state.product.push(payload)
     },
     deleteProduct (state, payload) {
-      state.product.filter(product => product.id !== payload)
+      state.product = state.product.filter(product => product.id !== payload)
     },
     getEditProduct (state, payload) {
       state.editedProduct = payload
