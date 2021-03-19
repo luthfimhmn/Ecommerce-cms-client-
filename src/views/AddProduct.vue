@@ -20,8 +20,8 @@
                         <label for="description">Stock :</label>
                         <input v-model="stock" type="text" class="form-control" placeholder="Product's Stock">
                     </div><br>
-                    <button type="submit" class="btn btn-primary" >Add Product</button>
-                    <button type="submit" class="btn btn-danger cancel">Cancel</button>
+                    <button type="submit" class="btn btn-primary" >Add Product</button> &nbsp; &nbsp; &nbsp;
+                    <button type="cancel" class="btn btn-danger cancel" @click.prevent="cancel">Cancel</button>
                     <hr />
                 </form>
             </div>
@@ -39,9 +39,6 @@ export default {
       stock: ''
     }
   },
-  computed: {
-
-  },
   methods: {
     addProduct () {
       const data = {
@@ -51,6 +48,9 @@ export default {
         stock: this.stock
       }
       this.$store.dispatch('addProduct', data)
+    },
+    cancel () {
+      this.$router.push('/dashboard')
     }
   }
 }

@@ -20,7 +20,7 @@
                         <label for="description">Stock :</label>
                         <input v-model="editedProduct.data.stock" type="text" class="form-control" placeholder="Product's Stock">
                     </div><br>
-                    <button type="submit" class="btn btn-primary" >Edit Product</button>
+                    <button type="submit" class="btn btn-primary" >Edit Product</button> &nbsp; &nbsp;
                     <button type="submit" class="btn btn-danger cancel">Cancel</button>
                     <hr />
                 </form>

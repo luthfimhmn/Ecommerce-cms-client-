@@ -3,7 +3,7 @@
     <router-link to="/">Home</router-link> |
     <router-link to="/dashboard">Dashboard</router-link> |
     <router-link to="/addproduct">Add Product</router-link> |
-    <router-link to="/banner">Banner</router-link> |
+    <router-link to="/banners">Banner</router-link> |
     <router-link to="/addbanner">Add Banner</router-link> |
     <button class="btn btn-primary" @click="logout">logout</button>
   </div>
