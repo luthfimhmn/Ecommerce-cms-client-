@@ -37,7 +37,7 @@ export default {
         status: this.editedBanner.data.status,
         image_url: this.editedBanner.data.image_url
       }
-      this.$store.dispacth('editBanner', data)
+      this.$store.dispatch('editBanner', data)
     },
     cancel () {
       this.$router.push('/banners')
