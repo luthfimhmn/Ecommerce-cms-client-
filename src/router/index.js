@@ -4,11 +4,11 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: () => import('../views/Home.vue')
-  },
+  // {
+  //   path: '/',
+  //   name: 'Home',
+  //   component: () => import('../views/Home.vue')
+  // },
   {
     path: '/addbanner',
     name: 'AddBanner',
@@ -40,6 +40,11 @@ const routes = [
     component: () => import('../views/EditProduct.vue')
   },
   {
+    path: '/banners/:id/edit',
+    name: 'EditBanner',
+    component: () => import('../views/EditBanner.vue')
+  },
+  {
     path: '*',
     name: 'NotFound',
     component: () => import('../views/NotFound.vue')
@@ -54,7 +59,7 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   if (!localStorage.access_token) {
-    if (to.name === 'Dashboard' || to.name === 'Home' || to.name === 'AddProduct' || to.name === 'Banner' || to.name === 'AddBanner' || to.name === 'Edit') {
+    if (to.name === 'Dashboard' || to.name === 'Home' || to.name === 'AddProduct' || to.name === 'Banner' || to.name === 'AddBanner' || to.name === 'Edit' || to.name === 'EditBanner') {
       next({ name: 'Login' })
     } else {
       next()

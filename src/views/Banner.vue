@@ -15,8 +15,8 @@
                 <td>Category</td>
                 <td>{{ banner.status }}</td>
                 <td>
-                    <button class="btn btn-danger">Edit</button> &nbsp; &nbsp;
-              <button class="btn btn-danger" @click.prevent="deleteBanner(banner.id)">Delete</button>
+                    <button class="btn btn-danger" @click.prevent="goToEdit(banner.id)">Edit</button> &nbsp; &nbsp;
+                    <button class="btn btn-danger" @click.prevent="deleteBanner(banner.id)">Delete</button>
                 </td>
             </tr>
         </tbody>

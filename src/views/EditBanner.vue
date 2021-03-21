@@ -1,20 +1,20 @@
 <template>
-<div class="container">
+  <div class="container">
         <div class="div-center">
             <div class="content">
                 <h3>Add Banner</h3>
-                <form @submit.prevent="addBanner">
+                <form @submit.prevent="editBanner">
                     <div class="form-group">
                         <label for="title">Banner Title :</label>
-                        <input v-model="title" type="text" class="form-control" placeholder="Banner URL">
+                        <input v-model="editedBanner.data.title" type="text" class="form-control" placeholder="Banner URL">
                     </div>
                     <div class="form-group">
                         <label for="description">Status :</label>
-                        <input v-model="status" type="text" class="form-control" placeholder="Banner's Stock">
+                        <input v-model="editedBanner.data.status" type="text" class="form-control" placeholder="Banner's Stock">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Image Url:</label>
-                        <input v-model="image_url" type="text" class="form-control" placeholder="Banner's Status">
+                        <input v-model="editedBanner.data.image_url" type="text" class="form-control" placeholder="Banner's Status">
                     </div><br>
                     <button type="submit" class="btn btn-primary" >Add Banner</button> &nbsp; &nbsp;
                     <button type="cancel" class="btn btn-danger cancel" @click.prevent="cancel">Cancel</button>
@@ -22,30 +22,26 @@
                 </form>
             </div>
         </div>
-    </div>
+  </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
-  data () {
-    return {
-      title: '',
-      status: '',
-      image_url: ''
+  methods: {
+    editBanner () {
+      const bannerId = this.$route.params.id
+      const data = {
+        bannerId,
+        title: this.editedBanner.data.title,
+        status: this.editedBanner.data.status,
+        image_url: this.editedBanner.data.image_url
+      }
+      this.$store.dispacth('editBanner', data)
     }
   },
-  methods: {
-    addBanner () {
-      const data = {
-        title: this.title,
-        status: this.status,
-        image_url: this.image_url
-      }
-      this.$store.dispatch('addBanner', data)
-    },
-    cancel () {
-      this.$router.push('/banners')
-    }
+  computed: {
+    ...mapState(['editedBanner'])
   }
 }
 </script>

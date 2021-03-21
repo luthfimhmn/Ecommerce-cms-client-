@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from '../axios/axios'
 import router from '../router'
+import Swal from 'sweetalert2'
 
 Vue.use(Vuex)
 
@@ -52,6 +53,10 @@ export default new Vuex.Store({
           localStorage.setItem('access_token', response.data.access_token)
           localStorage.setItem('name', response.data.name)
           localStorage.setItem('role', response.data.role)
+          Swal.fire({
+            title: 'Login success!',
+            icon: 'success'
+          })
           router.push('/dashboard')
         })
         .catch(err => {
@@ -72,9 +77,22 @@ export default new Vuex.Store({
       })
         .then(({ data }) => {
           context.commit('insertNewProduct', data)
+          Swal.fire({
+            title: 'Add Product success!',
+            icon: 'success'
+          })
+          console.log(data)
           router.push('/dashboard')
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Something is wrong',
+            text: `${err}`
+          })
+          console.log(err.message)
+          console.log(err)
+        })
     },
     fetchProduct (context) {
       axios({
@@ -83,7 +101,6 @@ export default new Vuex.Store({
         headers: { access_token: localStorage.access_token }
       })
         .then(({ data }) => {
-          // console.log(data)
           context.commit('insertProduct', data)
         })
         .catch(err => {
@@ -91,16 +108,34 @@ export default new Vuex.Store({
         })
     },
     deleteProduct (context, id) {
-      axios({
-        url: `http://localhost:3000/products/${id}`,
-        method: 'DELETE',
-        headers: { access_token: localStorage.access_token }
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
       })
-        .then(() => {
-          context.commit('deleteProduct', id)
-        })
-        .catch(err => {
-          console.log(err)
+        .then((result) => {
+          if (result.isConfirmed) {
+            axios({
+              url: `http://localhost:3000/products/${id}`,
+              method: 'DELETE',
+              headers: { access_token: localStorage.access_token }
+            })
+              .then(() => {
+                Swal.fire(
+                  'Deleted!',
+                  'Product has been deleted.',
+                  'success'
+                )
+                context.commit('deleteProduct', id)
+              })
+              .catch(err => {
+                console.log(err)
+              })
+          }
         })
     },
     editProduct (context, payload) {
@@ -116,6 +151,10 @@ export default new Vuex.Store({
         }
       })
         .then(({ data }) => {
+          Swal.fire({
+            title: 'Edit Success',
+            icon: 'success'
+          })
           router.push('/dashboard')
         })
         .catch(err => console.log(err))
@@ -145,9 +184,18 @@ export default new Vuex.Store({
       })
         .then(({ data }) => {
           context.commit('insertNewBanner', data)
+          Swal.fire({
+            title: 'Banner Added',
+            icon: 'success'
+          })
           router.push('/banners')
         })
-        .catch(err => {
+        .catch((err) => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Something is wrong',
+            text: `${err}`
+          })
           console.log(err)
         })
     },
@@ -165,13 +213,57 @@ export default new Vuex.Store({
         })
     },
     deleteBanner (context, id) {
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      })
+        .then((result) => {
+          if (result.isConfirmed) {
+            axios({
+              url: `/banners/${id}`,
+              method: 'DELETE',
+              headers: { access_token: localStorage.access_token }
+            })
+              .then(() => context.commit('deleteBanner', id))
+              .catch(err => console.log(err))
+          }
+        })
+    },
+    getEditBanner (context, id) {
       axios({
+        method: 'GET',
         url: `/banners/${id}`,
-        method: 'DELETE',
         headers: { access_token: localStorage.access_token }
       })
-        .then(() => context.commit('deleteBanner', id))
-        .catch(err => console.log(err))
+        .then(data => {
+          context.commit('getEditBanner', data)
+          router.push(`/banners/${id}/edit`)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+    editBanner (context, payload) {
+      axios({
+        method: 'PUT',
+        url: `/banners/${payload.bannerId}`,
+        headers: { access_token: localStorage.access_token }
+      })
+        .then(() => {
+          Swal.fire({
+            title: 'Edit Banner success',
+            icon: 'success'
+          })
+          router.push('/banners')
+        })
+        .catch(err => {
+          console.log(err)
+        })
     }
   },
   modules: {

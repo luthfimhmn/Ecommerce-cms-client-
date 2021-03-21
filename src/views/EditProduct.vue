@@ -32,14 +32,6 @@
 <script>
 import { mapState } from 'vuex'
 export default {
-  data () {
-    return {
-      // name: '',
-      // image_url: '',
-      // price: '',
-      // stock: ''
-    }
-  },
   methods: {
     editProduct () {
       const prodId = this.$route.params.id
@@ -51,7 +43,6 @@ export default {
         stock: this.editedProduct.data.stock
       }
       this.$store.dispatch('editProduct', data)
-      // console.log(data)
     }
   },
   computed: {
