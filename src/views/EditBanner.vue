@@ -16,7 +16,7 @@
                         <label for="exampleInputPassword1">Image Url:</label>
                         <input v-model="editedBanner.data.image_url" type="text" class="form-control" placeholder="Banner's Status">
                     </div><br>
-                    <button type="submit" class="btn btn-primary" >Add Banner</button> &nbsp; &nbsp;
+                    <button type="submit" class="btn btn-primary" >Edit Banner</button> &nbsp; &nbsp;
                     <button type="cancel" class="btn btn-danger cancel" @click.prevent="cancel">Cancel</button>
                     <hr />
                 </form>
