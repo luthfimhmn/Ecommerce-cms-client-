@@ -43,7 +43,7 @@ export default new Vuex.Store({
     login (context, payload) {
       axios({
         method: 'POST',
-        url: 'http://localhost:3000/login',
+        url: '/login',
         data: {
           email: payload.email,
           password: payload.password
@@ -66,7 +66,7 @@ export default new Vuex.Store({
     addProduct (context, payload) {
       axios({
         method: 'POST',
-        url: 'http://localhost:3000/products',
+        url: '/products',
         headers: { access_token: localStorage.access_token },
         data: {
           name: payload.name,
@@ -97,7 +97,7 @@ export default new Vuex.Store({
     fetchProduct (context) {
       axios({
         method: 'GET',
-        url: 'http://localhost:3000/products',
+        url: '/products',
         headers: { access_token: localStorage.access_token }
       })
         .then(({ data }) => {
@@ -120,7 +120,7 @@ export default new Vuex.Store({
         .then((result) => {
           if (result.isConfirmed) {
             axios({
-              url: `http://localhost:3000/products/${id}`,
+              url: `/products/${id}`,
               method: 'DELETE',
               headers: { access_token: localStorage.access_token }
             })
@@ -141,7 +141,7 @@ export default new Vuex.Store({
     editProduct (context, payload) {
       axios({
         method: 'PUT',
-        url: `http://localhost:3000/products/${payload.prodId}`,
+        url: `/products/${payload.prodId}`,
         headers: { access_token: localStorage.access_token },
         data: {
           name: payload.name,
@@ -162,7 +162,7 @@ export default new Vuex.Store({
     getEditProduct (context, id) {
       axios({
         method: 'GET',
-        url: `http://localhost:3000/products/${id}`,
+        url: `/products/${id}`,
         headers: { access_token: localStorage.access_token }
       })
         .then(data => {
