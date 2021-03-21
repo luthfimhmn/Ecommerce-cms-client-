@@ -2,7 +2,7 @@
   <div class="container">
         <div class="div-center">
             <div class="content">
-                <h3>Add Banner</h3>
+                <h3>Edit Banner</h3>
                 <form @submit.prevent="editBanner">
                     <div class="form-group">
                         <label for="title">Banner Title :</label>
@@ -38,6 +38,9 @@ export default {
         image_url: this.editedBanner.data.image_url
       }
       this.$store.dispacth('editBanner', data)
+    },
+    cancel () {
+      this.$router.push('/banners')
     }
   },
   computed: {
