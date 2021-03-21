@@ -6,15 +6,15 @@
                 <form @submit.prevent="addBanner">
                     <div class="form-group">
                         <label for="title">Banner Title :</label>
-                        <input v-model="title" type="text" class="form-control" placeholder="Banner URL">
+                        <input v-model="title" type="text" class="form-control" placeholder="Banner Title">
                     </div>
                     <div class="form-group">
                         <label for="description">Status :</label>
-                        <input v-model="status" type="text" class="form-control" placeholder="Banner's Stock">
+                        <input v-model="status" type="text" class="form-control" placeholder="Banner's Status">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Image Url:</label>
-                        <input v-model="image_url" type="text" class="form-control" placeholder="Banner's Status">
+                        <input v-model="image_url" type="text" class="form-control" placeholder="Banner's Image">
                     </div><br>
                     <button type="submit" class="btn btn-primary" >Add Banner</button> &nbsp; &nbsp;
                     <button type="cancel" class="btn btn-danger cancel" @click.prevent="cancel">Cancel</button>
