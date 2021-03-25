@@ -4,7 +4,6 @@
         <thead>
             <th>No</th>
             <th>Banner</th>
-            <th>Category</th>
             <th>Status</th>
             <th>Actions</th>
         </thead>
@@ -12,7 +11,6 @@
             <tr v-for="(banner, index) in banners" :key="banner.id">
                 <td>{{ index + 1}}</td>
                 <td><img :src="banner.image_url" alt="" style="width:800;height:200px;"></td>
-                <td>Category</td>
                 <td>{{ banner.status }}</td>
                 <td>
                     <button class="btn btn-danger" @click.prevent="goToEdit(banner.id)">Edit</button> &nbsp; &nbsp;

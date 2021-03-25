@@ -9,16 +9,16 @@
                         <input v-model="name" type="text" class="form-control" placeholder="Name of Product">
                     </div>
                     <div class="form-group">
-                        <label for="title">Image URL :</label>
-                        <input v-model="image_url" type="text" class="form-control" placeholder="Url Image of Product">
+                        <label for="image_url">Image URL :</label>
+                        <input id="image_url" v-model="image_url" type="text" class="form-control" placeholder="Url Image of Product">
                     </div>
                      <div class="form-group">
-                        <label for="exampleInputPassword1">Price:</label>
-                        <input v-model="price" type="number" class="form-control" placeholder="Product's Price">
+                        <label for="price">Price:</label>
+                        <input id="price" v-model="price" type="number" class="form-control" placeholder="Product's Price">
                     </div>
                     <div class="form-group">
-                        <label for="description">Stock :</label>
-                        <input v-model="stock" type="text" class="form-control" placeholder="Product's Stock">
+                        <label for="stock">Stock :</label>
+                        <input id="stock" v-model="stock" type="text" class="form-control" placeholder="Product's Stock">
                     </div><br>
                     <button type="submit" class="btn btn-primary" >Add Product</button> &nbsp; &nbsp; &nbsp;
                     <button type="cancel" class="btn btn-danger cancel" @click.prevent="cancel">Cancel</button>
@@ -36,7 +36,14 @@ export default {
       name: '',
       image_url: '',
       price: '',
-      stock: ''
+      stock: '',
+      categoryId: '',
+      options: [
+        { text: 'Fashion', value: 1 },
+        { text: 'Foods', value: 2 },
+        { text: 'Tools', value: 3 },
+        { text: 'Others', value: 4 }
+      ]
     }
   },
   methods: {
@@ -45,7 +52,8 @@ export default {
         name: this.name,
         image_url: this.image_url,
         price: this.price,
-        stock: this.stock
+        stock: this.stock,
+        categoryId: this.categoryId
       }
       this.$store.dispatch('addProduct', data)
     },

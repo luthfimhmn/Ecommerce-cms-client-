@@ -7,7 +7,6 @@
           <th>No</th>
           <th>Image</th>
           <th>Name</th>
-          <th>Category</th>
           <th>Price</th>
           <th>Stock</th>
           <th>Actions</th>
@@ -18,7 +17,6 @@
             <td>{{index + 1 }}</td>
             <td><img :src="prod.image_url" alt="" style="width:200;height:50px;"></td>
             <td>{{ prod.name }}</td>
-            <td>Category</td>
             <td>{{ prod.price }}</td>
             <td>{{ prod.stock }} </td>
             <td>

@@ -72,7 +72,8 @@ export default new Vuex.Store({
           name: payload.name,
           image_url: payload.image_url,
           price: payload.price,
-          stock: payload.stock
+          stock: payload.stock,
+          categoryId: payload.categoryId
         }
       })
         .then(({ data }) => {
@@ -81,7 +82,6 @@ export default new Vuex.Store({
             title: 'Add Product success!',
             icon: 'success'
           })
-          console.log(data)
           router.push('/dashboard')
         })
         .catch(err => {
